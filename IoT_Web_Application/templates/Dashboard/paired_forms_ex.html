@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paired Forms Example</title>
+</head>
+<body>
+
+<form action="#" method="post" id="demoForm" class="demoForm">
+    <fieldset>
+        <legend>Demo: Dynamic Select Box</legend>
+
+        <select name="category">
+            <option value="js">JavaScripts</option>
+            <option value="php">PHP Scripts</option>
+            <option value="tuts">Tutorials</option>
+        </select>
+
+        <select name="choices" id="choices">
+            {{% if category.option is 'js' %}}
+                <option>PHIL</option>
+                <option>TOM</option>
+            {{% endif %}}
+            {% if category.option is 'php' %}
+                <option>BIG</option>
+                <option>BLOB</option>
+            {% endif %}
+        </select>
+
+    </fieldset>
+</form>
+
+</body>
+</html>

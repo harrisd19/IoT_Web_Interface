@@ -1,0 +1,114 @@
+{% extends 'Dashboard/base.html' %}
+{% block right_content %}
+{%  load staticfiles %}
+    <!DOCTYPE html>
+            <!-- ============================================================== -->
+            <!-- Start right Content here -->
+            <!-- ============================================================== -->
+            <div class="content-page">
+                <!-- Start content -->
+                <div class="content">
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="card-box table-responsive">
+
+                        			<h4 class="header-title m-t-0 m-b-30">All Notification Recipients
+                                        <form action="{% url 'IoTWiFi:add_instant' %}">
+                                            <button type="submit" class="btn btn-default waves-effect w-md m-b-5" style="float: right; margin-right: 10px">Add Instant</button>
+                                        </form>
+
+                                        <form action="{% url 'IoTWiFi:add_timebased' %}">
+                                            <button type="submit" class="btn btn-default waves-effect w-md m-b-5" style="float: right; margin-right: 10px">Add Time-Based</button>
+                                        </form>
+                                    </h4>
+                                    <table id="datatable" class="table table-striped table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Phone Number</th>
+                                                <th>Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                {% for Notify_txt_Users in entries %}
+                                                <tr>
+                                                    <td><a href="{% url 'IoTWiFi:index'%}">{{ Notify_txt_Users.First_Name}}</a></td>
+                                                    <td><a href="{% url 'IoTWiFi:index'%}">{{ Notify_txt_Users.Last_Name}}</a></td>
+                                                    <td><a href="{% url 'IoTWiFi:index'%}">{{ Notify_txt_Users.Phone_Number}}</a></td>
+                                                    <td><a href="{% url 'IoTWiFi:index'%}">{{ Notify_txt_Users.Email}}</a></td>
+                                                </tr>
+                                                {% endfor %}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div><!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+            <!-- ============================================================== -->
+            <!-- End Right content here -->
+            <!-- ============================================================== -->
+
+
+            <!-- Right Sidebar -->
+
+        </div>
+        <!-- END wrapper -->
+
+
+
+        <script>
+            var resizefunc = [];
+        </script>
+
+        <!-- jQuery  -->
+        <script src='{%  static "js/jquery.min.js" %}'></script>
+        <script src='{%  static "js/bootstrap.min.js" %}'></script>
+        <script src='{%  static "js/detect.js" %}'></script>
+        <script src='{%  static "js/fastclick.js" %}'></script>
+        <script src='{%  static "js/jquery.slimscroll.js" %}'></script>
+        <script src='{%  static "js/jquery.blockUI.js" %}'></script>
+        <script src='{%  static "js/waves.js" %}'></script>
+        <script src='{%  static "js/jquery.nicescroll.js" %}'></script>
+        <script src='{%  static "js/jquery.scrollTo.min.js" %}'></script>
+
+        <!-- Datatables-->
+        <script src='{%  static "plugins/datatables/jquery.dataTables.min.js" %}'></script>
+        <script src='{%  static "plugins/datatables/dataTables.bootstrap.js" %}'></script>
+        <script src='{%  static "plugins/datatables/dataTables.buttons.min.js" %}'></script>
+        <script src='{%  static "plugins/datatables/buttons.bootstrap.min.js" %}'></script>
+        <script src='{%  static "plugins/datatables/jszip.min.js" %}'></script>
+        <script src='{%  static "plugins/datatables/pdfmake.min.js" %}'></script>
+        <script src='{%  static "plugins/datatables/vfs_fonts.js" %}'></script>
+        <script src='{%  static "plugins/datatables/buttons.html5.min.js" %}'></script>
+        <script src='{%  static "plugins/datatables/buttons.print.min.js" %}'></script>
+        <script src='{%  static "plugins/datatables/dataTables.fixedHeader.min.js" %}'></script>
+        <script src='{%  static "plugins/datatables/dataTables.keyTable.min.js" %}'></script>
+        <script src='{%  static "plugins/datatables/dataTables.responsive.min.js" %}'></script>
+        <script src='{%  static "plugins/datatables/responsive.bootstrap.min.js" %}'></script>
+        <script src='{%  static "plugins/datatables/dataTables.scroller.min.js" %}'></script>
+
+        <!-- Datatable init js -->
+        <script src='{% static "pages/datatables.init.js" %}'></script>
+
+        <!-- App js -->
+        <script src='{% static "js/jquery.core.js" %}'></script>
+        <script src='{% static "js/jquery.app.js" %}'></script>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $('#datatable').dataTable();
+                $('#datatable-keytable').DataTable( { keys: true } );
+                $('#datatable-responsive').DataTable();
+                $('#datatable-scroller').DataTable( { ajax: "assets/plugins/datatables/json/scroller-demo.json", deferRender: true, scrollY: 380, scrollCollapse: true, scroller: true } );
+                var table = $('#datatable-fixed-header').DataTable( { fixedHeader: true } );
+            } );
+            TableManageButtons.init();
+
+        </script>
+                </div>
+            </div>
+{% endblock %}
